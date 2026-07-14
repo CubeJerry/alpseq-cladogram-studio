@@ -58,8 +58,9 @@ function styleTree(tree) {
     trace.hoverinfo = ui.showHoverInput.checked ? (originalTrace.hoverinfo || trace.hoverinfo) : 'skip';
     trace.hovertemplate = ui.showHoverInput.checked ? originalTrace.hovertemplate : undefined;
     if (hasMeaningfulText(originalTrace)) {
-      trace.mode = toggleTextMode(originalTrace.mode || trace.mode || 'markers', ui.showLabelsInput.checked);
-      trace.text = ui.showLabelsInput.checked ? deepClone(originalTrace.text) : undefined;
+      const filteredText = ui.showLabelsInput.checked ? filterRenderableText(deepClone(originalTrace.text)) : undefined;
+      trace.mode = toggleTextMode(originalTrace.mode || trace.mode || 'markers', ui.showLabelsInput.checked && hasRenderableText(filteredText));
+      trace.text = filteredText;
     }
   });
 
