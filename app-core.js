@@ -146,7 +146,7 @@ function extractTreesFromHtml(html, sourceName) {
     try {
       const payload = JSON.parse(script.textContent);
       const plotly = normalisePlotlyPayload(payload);
-      if (!plotly?.data?.length) return;
+      if (!plotly?.data?.some(isLineTrace)) return;
       const widgetId = script.getAttribute('data-for');
       const widget = doc.getElementById(widgetId);
       const context = getWidgetContext(widget, index);
@@ -163,7 +163,7 @@ function extractTreesFromHtml(html, sourceName) {
     try {
       const payload = JSON.parse(element.getAttribute('data-plotly'));
       const plotly = normalisePlotlyPayload(payload);
-      if (!plotly?.data?.length) return;
+      if (!plotly?.data?.some(isLineTrace)) return;
       const context = getWidgetContext(element, scripts.length + index);
       if (scoreTreeCandidate(plotly, context) >= 2) {
         candidates.push(makeTreeRecord({ ...plotly, name: context.title, sourceName, sourceType: 'plotly-html', context }));
