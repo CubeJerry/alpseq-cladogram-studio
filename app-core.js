@@ -40,7 +40,7 @@ function cacheUi() {
     'downloadDataButton', 'inspectButton', 'inspectDialog', 'inspectPre', 'closeInspectButton',
     'payloadHash', 'toast', 'resetButton', 'presetSelect', 'widthInput', 'heightInput',
     'marginInput', 'paddingInput', 'orientationSelect', 'lineWidthInput', 'markerSizeInput',
-    'opacityInput', 'lineShapeSelect', 'branchColorInput', 'leafColorInput', 'fontSizeInput',
+    'opacityInput', 'lineShapeSelect', 'branchColorInput', 'leafColorInput', 'leafOutlineColorInput', 'fontSizeInput',
     'fontSelect', 'textColorInput', 'titleInput', 'showLabelsInput', 'showLegendInput',
     'showHoverInput', 'showAxesInput', 'pageColorInput', 'plotColorInput', 'gridColorInput',
     'widthOutput', 'heightOutput', 'marginOutput', 'paddingOutput', 'lineWidthOutput',
@@ -80,7 +80,7 @@ function bindEvents() {
   const controlIds = [
     'widthInput', 'heightInput', 'marginInput', 'paddingInput', 'orientationSelect',
     'lineWidthInput', 'markerSizeInput', 'opacityInput', 'lineShapeSelect', 'branchColorInput',
-    'leafColorInput', 'fontSizeInput', 'fontSelect', 'textColorInput', 'titleInput',
+    'leafColorInput', 'leafOutlineColorInput', 'fontSizeInput', 'fontSelect', 'textColorInput', 'titleInput',
     'showLabelsInput', 'showLegendInput', 'showHoverInput', 'showAxesInput',
     'pageColorInput', 'plotColorInput', 'gridColorInput',
   ];
