@@ -20,6 +20,7 @@ function styleTree(tree) {
 
   const branchColor = presetName === 'original' ? null : ui.branchColorInput.value;
   const leafColor = presetName === 'original' ? null : ui.leafColorInput.value;
+  const leafOutlineColor = presetName === 'original' ? null : ui.leafOutlineColorInput.value;
   const textColor = presetName === 'original' ? (layout.font?.color || '#18181b') : ui.textColorInput.value;
   const orientation = ui.orientationSelect.value;
 
@@ -44,7 +45,9 @@ function styleTree(tree) {
 
     if (leaf) {
       trace.marker = { ...(trace.marker || {}) };
+      trace.marker.line = { ...(originalTrace.marker?.line || trace.marker.line || {}) };
       if (leafColor) trace.marker.color = leafColor;
+      if (leafOutlineColor) trace.marker.line.color = leafOutlineColor;
       trace.marker.size = scaledMarkerSize(originalTrace.marker?.size, Number(ui.markerSizeInput.value));
       trace.textfont = { ...(trace.textfont || {}), family: ui.fontSelect.value, size: Number(ui.fontSizeInput.value), color: textColor };
       trace.textposition = trace.textposition || ((orientation === 'ttb' || orientation === 'btt') ? 'bottom center' : 'middle right');
@@ -136,6 +139,7 @@ function resetControls() {
   ui.markerSizeInput.value = '7';
   ui.opacityInput.value = '100';
   ui.lineShapeSelect.value = 'linear';
+  ui.leafOutlineColorInput.value = '#f59e0b';
   ui.fontSizeInput.value = '12';
   ui.fontSelect.value = 'Inter, sans-serif';
   ui.titleInput.value = '';
@@ -155,6 +159,7 @@ function applyPreset(name) {
   ui.plotColorInput.value = preset.plot;
   ui.branchColorInput.value = preset.branch;
   ui.leafColorInput.value = preset.leaf;
+  ui.leafOutlineColorInput.value = preset.leaf;
   ui.textColorInput.value = preset.text;
   ui.gridColorInput.value = preset.grid;
 }
