@@ -75,7 +75,10 @@ Files are read entirely in the browser using `File.text()` and `DOMParser`. Impo
 ```text
 index.html                  App shell
 styles.css                  Minimalist dark design system
-app.js                      Import, extraction, styling, clustering and export logic
+app-core.js                 Import and AlpSeq report extraction
+app-tree.js                 Sequence fallback and tree state
+app-render.js               Styling, sizing and export logic
+app-utils.js                Demo data and browser utilities
 Plotly.js                   Loaded from the official Plotly CDN
 sample-data/                AlpSeq-style HTML and sequence CSV demos
 .github/workflows/pages.yml GitHub Pages deployment
