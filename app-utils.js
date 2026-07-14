@@ -75,6 +75,19 @@ function hasMeaningfulText(trace) {
   return String(trace?.mode || '').toLowerCase().includes('text') ||
     (Array.isArray(trace?.text) && trace.text.some((value) => value != null && String(value).trim()));
 }
+function isInternalNodeLabel(value) {
+  const text = String(value ?? '').trim();
+  if (!text) return false;
+  return /^(?:cdr3\s*:\s*)?node\d+$/i.test(text);
+}
+function filterRenderableText(text) {
+  if (Array.isArray(text)) return text.map((value) => (isInternalNodeLabel(value) ? '' : value));
+  return isInternalNodeLabel(text) ? '' : text;
+}
+function hasRenderableText(text) {
+  if (Array.isArray(text)) return text.some((value) => value != null && String(value).trim());
+  return text != null && String(text).trim() !== '';
+}
 function toggleTextMode(mode, show) {
   const parts = String(mode || '').split('+').filter(Boolean).filter((part) => part !== 'text');
   if (show) parts.push('text');
