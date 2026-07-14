@@ -80,9 +80,14 @@ function isInternalNodeLabel(value) {
   if (!text) return false;
   return /^(?:cdr3\s*:\s*)?node\d+$/i.test(text);
 }
+function formatRenderableLabel(value) {
+  const text = String(value ?? '').trim();
+  if (!text || isInternalNodeLabel(text)) return '';
+  return text.replace(/^cdr3\s*:\s*/i, '');
+}
 function filterRenderableText(text) {
-  if (Array.isArray(text)) return text.map((value) => (isInternalNodeLabel(value) ? '' : value));
-  return isInternalNodeLabel(text) ? '' : text;
+  if (Array.isArray(text)) return text.map(formatRenderableLabel);
+  return formatRenderableLabel(text);
 }
 function hasRenderableText(text) {
   if (Array.isArray(text)) return text.some((value) => value != null && String(value).trim());
